@@ -1,7 +1,6 @@
 import datetime
 import hashlib
 import json
-from flask import Flask, jsonify
 
 class Blockchain:
     #components of blockchain
@@ -55,13 +54,4 @@ class Blockchain:
             previous_block = block
             block_index += 1
         return True
-
-
-
-
-
-
-
-
-
 
