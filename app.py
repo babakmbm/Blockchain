@@ -6,7 +6,7 @@ app = Flask(__name__)
 blockchain = Blockchain()
 
 
-@app.route('/mine_Block', methods=['GET'])
+@app.route('/mine_block', methods=['GET'])
 def mine_block():
     previous_block = blockchain.get_previous_block()
     previous_proof = previous_block['proof']
@@ -31,6 +31,15 @@ def get_full_chain():
 
     return jsonify(response), 200
 
+@app.route('/chain_validation', methods=['GET'])
+def chain_validation():
+    valid = blockchain.is_chain_valid(blockchain.chain)
+    if valid:
+        response = {'message': 'The chain is valid!'}
+    else:
+        response = {'message': 'The chain is not valid!'}
+
+    return jsonify(response), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
